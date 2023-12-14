@@ -1,0 +1,5 @@
+{
+    "credHelpers": {
+        "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com": "ecr-login"
+    }
+}

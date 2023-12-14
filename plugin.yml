@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ConfigManagementPlugin
+metadata:
+  name: argo-cmp-timoni
+spec:
+  version: v0.1.0
+  init:
+    command: [/bin/bash]
+    args: ["/home/argocd/init.sh"]
+  generate:
+    command: [/usr/local/bin/timoni]
+    args:
+      - |
+        bundle build -f bundle.cue
+  discover:
+    fileName: "./bundle.cue"
+  parameters:
+    preserveFileMode: false
