@@ -9,9 +9,7 @@ spec:
     args: ["/home/argocd/init.sh"]
   generate:
     command: [/usr/local/bin/timoni]
-    args:
-      - |
-        bundle build -f bundle.cue
+    args: ["bundle", "build", "-f", "bundle.cue"]
   discover:
     fileName: "./bundle.cue"
   parameters:
