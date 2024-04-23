@@ -22,6 +22,13 @@ else
 fi
 
 if [[ -n "${REGION}" || -n "${ACCOUNT_ID}" ]]; then
-    echo "INFO: Replacing ACCOUNT_ID and REGION in /home/argocd/.docker/config.json"
-    sed -i.bak 's/ACCOUNT_ID/'"$ACCOUNT_ID"'/g; s/REGION/'"$REGION"'/g' /home/argocd/.docker/config.json
+    echo "INFO: Configuring ECR credentials in /home/argocd/.docker/config.json"
+    mkdir -p /home/argocd/.docker
+    cat >/home/argocd/.docker/config.json <<EOF
+{
+    "credHelpers": {
+        "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com": "ecr-login"
+    }
+}
+EOF
 fi
